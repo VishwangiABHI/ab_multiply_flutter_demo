@@ -124,6 +124,12 @@ class _VideoWatchScreen extends State<VideoWatchScreen> {
     );
   }*/
 
+  /*In flutter demo lets add a. Step sync SDK prob GFit b. Fitternity*/
+  /*2. Flutter demo on iphone*/
+  /*3.React native demo*/
+  /*4. Comparision between flutter/react native/native*/
+  /*lets close by 10th Nov*/
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
