@@ -1,7 +1,7 @@
+import 'package:ab_multiply_demo/screens/health_data_screen.dart';
 import 'package:ab_multiply_demo/screens/video_watch_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ab_multiply_demo/utilities/constants.dart';
-import 'package:ab_multiply_demo/screens/video_watch.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -43,7 +43,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ElevatedButton(
                     style: kHomeScreenButtonStyle,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return HealthData();
+                          },
+                        ),
+                      );
+                    },
                     child: Text('Active Dayz'),
                   )
                 ],
