@@ -23,6 +23,13 @@ class ApiServices {
     return network.postData(loginRequestModel);
   }
 
+  Future<LoginResponse> loginPostNew(
+      LoginRequestModel loginRequestModel) async {
+    var url = '$kAbhiUrl/Registration/LoginStandard';
+    NetworkHelper network = NetworkHelper(url: url);
+    return await network.postDataNew(loginRequestModel);
+  }
+
   Future<WorkoutVideosModel> getWorkoutVideos() async {
     var url = '$kAbhiUrl/Support/WorkoutVideos';
     NetworkHelper network = NetworkHelper(url: url);

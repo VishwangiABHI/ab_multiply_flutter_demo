@@ -2,8 +2,9 @@ import 'package:ab_multiply_demo/models/login_request.dart';
 import 'package:ab_multiply_demo/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:ab_multiply_demo/services/api_services.dart';
-import '../utilities/constants.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:ab_multiply_demo/models/login_response.dart';
+import 'package:ab_multiply_demo/utilities/constants.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +17,14 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController textControllerUsername = TextEditingController();
   TextEditingController textControllerPassword = TextEditingController();
   bool isLoading = false;
+
+  String validation(String? message, Data? data) {
+    if (data == null) {
+      return message.toString();
+    } else {
+      return 'Login Successful!';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -140,8 +149,8 @@ class _LoginPageState extends State<LoginPage> {
                                 isLoading = true;
                               });
                               print(await ApiServices().getConfig());
-                              dynamic loginResponse = await ApiServices()
-                                  .loginPost(LoginRequestModel(
+                              LoginResponse loginResponse = await ApiServices()
+                                  .loginPostNew(LoginRequestModel(
                                       emailId: textControllerUsername.text,
                                       password:
                                           'e034db55b346a08b8debcd4c9a9b5ec39e8ae89a',
@@ -152,34 +161,43 @@ class _LoginPageState extends State<LoginPage> {
                                       osVersion: '7.5',
                                       IsRemember: true,
                                       IsFingerPrintLogin: true));
+                              print(loginResponse.message);
                               setState(() {
                                 isLoading = false;
                               });
                               Alert(
-                                  context: context,
-                                  title: "Login Successful!",
-                                  desc: "Welcome to AB Multiply app.",
-                                  buttons: [
-                                    DialogButton(
-                                      child: Text(
-                                        "GO AHEAD",
-                                        style: TextStyle(
-                                            color: Colors.white, fontSize: 20),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) {
-                                              return HomeScreen();
-                                            },
+                                context: context,
+                                title: "Login!",
+                                desc: validation(
+                                    loginResponse.message, loginResponse.data),
+                                buttons: validation(loginResponse.message,
+                                            loginResponse.data) ==
+                                        'Login Successful!'
+                                    ? [
+                                        DialogButton(
+                                          child: Text(
+                                            "GO AHEAD",
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 20),
                                           ),
-                                        );
-                                      },
-                                      color: Color.fromRGBO(0, 179, 134, 1.0),
-                                      radius: BorderRadius.circular(0.0),
-                                    ),
-                                  ]).show();
+                                          onPressed: () {
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                builder: (context) {
+                                                  return HomeScreen();
+                                                },
+                                              ),
+                                            );
+                                          },
+                                          color:
+                                              Color.fromRGBO(0, 179, 134, 1.0),
+                                          radius: BorderRadius.circular(0.0),
+                                        ),
+                                      ]
+                                    : null,
+                              ).show();
                             },
                             child: Text(
                               'Login',

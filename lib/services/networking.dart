@@ -41,7 +41,7 @@ class NetworkHelper {
       headers: headers,
       body: jsonEncode({
         //"emailId": loginRequestModel.emailId,
-        "emailId": 'agnelo01',
+        "emailId": loginRequestModel.emailId,
         "password": "e034db55b346a08b8debcd4c9a9b5ec39e8ae89a",
         'deviceType': 'android',
         'device': 'android',
@@ -58,6 +58,37 @@ class NetworkHelper {
 
     if (response.statusCode == 200) {
       return 'Login Successful';
+    } else if (response.statusCode == 201) {
+      return LoginResponse.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to create album.');
+    }
+  }
+
+  Future<LoginResponse> postDataNew(LoginRequestModel loginRequestModel) async {
+    final response = await http.post(
+      Uri.parse(url),
+      headers: headers,
+      body: jsonEncode({
+        //"emailId": loginRequestModel.emailId,
+        "emailId": loginRequestModel.emailId,
+        "password": "e034db55b346a08b8debcd4c9a9b5ec39e8ae89a",
+        'deviceType': 'android',
+        'device': 'android',
+        'fcmtoken':
+            'crvcjlJUQuKIvuvOvLD2HO:APA91bFhY54VUmzOcAf12l6Ia_sc779WCjgmseLB2PnW4DBHViGSG3YtUN-uCk01LaQaXga6bHYANozsL5peknYgZ_yQWuwSEtfwU_BzehXJU6d2Pon3l8TrqWD2pgLO9bZ5s7Jeq3rr',
+        'osVersion': '7.5',
+        'IsRemember': true,
+        'IsFingerPrintLogin': false,
+        'RegFingerPrint': false
+      }),
+    );
+
+    print(response.statusCode);
+
+    if (response.statusCode == 200) {
+      print(LoginResponse.fromJson(jsonDecode(response.body)).message);
+      return LoginResponse.fromJson(jsonDecode(response.body));
     } else if (response.statusCode == 201) {
       return LoginResponse.fromJson(jsonDecode(response.body));
     } else {

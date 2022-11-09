@@ -250,6 +250,7 @@ class _HealthDataState extends State<HealthData> {
       }
 
       print('Total number of steps: $steps');
+      print(caloriesBurned);
       double totalCalories = 0;
       for (var type in caloriesBurned) {
         totalCalories += double.parse(type.value.toString()).round();
@@ -319,7 +320,6 @@ class _HealthDataState extends State<HealthData> {
     return Column(
       children: [
         Text('Press the download button to fetch data.'),
-        Text('Press the plus button to insert some random data.'),
         Text('Press the walking button to get total step count.'),
       ],
       mainAxisAlignment: MainAxisAlignment.center,
@@ -340,8 +340,8 @@ class _HealthDataState extends State<HealthData> {
     //return Text('Total number of steps: $_nofSteps');
 
     return Container(
-      width: 300,
-      height: 300,
+      width: 200,
+      height: 200,
       decoration: BoxDecoration(
         border: Border.all(width: 4, color: Colors.amber),
         shape: BoxShape.circle,
@@ -357,16 +357,16 @@ class _HealthDataState extends State<HealthData> {
             'Steps: $_nofSteps',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
           ),
-          SizedBox(
+          /*SizedBox(
             height: 20,
-          ),
-          Text(
+          ),*/
+          /*Text(
             'Calories burned: $_caloriesBurned',
             style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.w400,
                 color: Colors.black45),
-          ),
+          ),*/
         ],
       ),
     );
