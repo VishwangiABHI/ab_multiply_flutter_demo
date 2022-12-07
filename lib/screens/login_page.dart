@@ -69,13 +69,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
               ),
-              Align(
+              /* Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Forgot username!',
                   style: TextStyle(color: Colors.redAccent[200]),
                 ),
-              ),
+              ),*/
               Container(
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
@@ -98,13 +98,13 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
               SizedBox(height: 10),
-              Align(
+              /* Align(
                 alignment: Alignment.centerRight,
                 child: Text(
                   'Forgot password!',
                   style: TextStyle(color: Colors.redAccent[200]),
                 ),
-              ),
+              ),*/
               Container(
                 padding: EdgeInsets.all(5),
                 decoration: BoxDecoration(
